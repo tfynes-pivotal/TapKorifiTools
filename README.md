@@ -86,3 +86,8 @@ Script creates a Carvel SecretExport from the namespace hosting the ClassClaim
 Script creates a Carvel SecretImport into the k8s namespace that underpins the cf space
 
 Script creates CF service (cfServiceInstance) allowing for cf pushed apps to bind to the bitnami resource
+
+
+Limitations:
+- Unique cf spaces names required (for now)
+- Clusters with large (20+) orgs/spaces could break the script as cf api pagination walking not implemented.
