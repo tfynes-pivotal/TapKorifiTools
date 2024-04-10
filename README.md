@@ -1,6 +1,6 @@
 # CreateTapKorifiService.sh
 
-##Intro:
+## Intro:
 
 Using Kubernetes with Tanzu Platform via a cloudfoundry "cf" abstraction is supported via the korifi controller, but there's no native korifi cloudfoundry marketplace.
 
@@ -13,7 +13,7 @@ This script will link the tanzu service secret to the cf layer, generating a 'cf
 No need to extract and re-inject the service connection secrets!
 
 
-##Usage:
+## Usage:
 Script takes 3 inputs
 - K8s namespace in which a Tanzu Data Service has been created - e.g. default
 - CF space name in which korifi service connection is required - e.g. DemoSpace
@@ -21,7 +21,7 @@ Script takes 3 inputs
 
 ---
 
-##Sample Usage: view services marketplace offerings, provision postgres database, link generated secret to cf/korifi abstraction layer, deploy spring-petclinic demo app, binding it to the tanzu postgres service **
+## Sample Usage: view services marketplace offerings, provision postgres database, link generated secret to cf/korifi abstraction layer, deploy spring-petclinic demo app, binding it to the tanzu postgres service **
 
 1. View Claimable Services in Tanzu enabled Cluster (a korifi/tap alternative to "cf marketplace")
 ```
