@@ -1,14 +1,14 @@
-# CreateBitnamiKorifiService.sh
+# CreateTapKorifiService.sh
 
 Intro:
 
 Using Kubernetes with Tanzu Platform via a cloud-foundry "cf" abstraction is supported via the korifi controller, but there's not native korifi cloud foundry marketplace.
 
-TAP for Kubernetes ships however with a bitnami services operator providing kubernetes hosted services provisioned on demand (postgres, mysql, rabbitmq, redis, kafka)
+TAP for Kubernetes ships however with a TAP (bitnami) services operator providing kubernetes hosted services provisioned on demand (postgres, mysql, rabbitmq, redis, kafka)
 
 How can these dynamically created services be easily exposed to the cloud-foundry/korifi abstraction?
 
-This script will generate a 'cf service instance' in the appropriate k8s namespace such that the cloud foundry api can see it and allow for cf pushed applications to 'bind' directly to bitnami operator provisioned services. 
+This script will generate a 'cf service instance' in the appropriate k8s namespace such that the cloud foundry api can see it and allow for cf pushed applications to 'bind' directly to TAP / bitnami operator provisioned services. 
 
 No need to extract and re-inject the service connection secrets!
 
@@ -54,7 +54,7 @@ space:          DemoSpace
 
 Create link from Default-NS ClassClaim for PostgresDB instance to CF 'space' - note this manifests in a guid-named cf-space-*** in the k8s cluster
 ```
-./CreateBitnamiKorifiService.sh default DemoSpace postgres1
+./CreateTapKorifiService.sh default DemoSpace postgres1
 Creating postgres1 Service Secret-Export from default
   secretexport.secretgen.carvel.dev/6de1a2bd-eec8-4159-97c2-62b28a3af8eb created
 Creating postgres1 Service Secret-Import to DemoSpace K8s namespace: cf-space-41f93f77-d2ac-48c0-8f0b-1a1c8a020a59
