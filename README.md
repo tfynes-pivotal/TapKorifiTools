@@ -1,6 +1,6 @@
 # CreateTapKorifiService.sh
 
-Intro:
+##Intro:
 
 Using Kubernetes with Tanzu Platform via a cloudfoundry "cf" abstraction is supported via the korifi controller, but there's no native korifi cloudfoundry marketplace.
 
@@ -13,18 +13,17 @@ This script will link the tanzu service secret to the cf layer, generating a 'cf
 No need to extract and re-inject the service connection secrets!
 
 
-##
-Usage:
+##Usage:
 Script takes 3 inputs
 - K8s namespace in which a Tanzu Data Service has been created - e.g. default
 - CF space name in which korifi service connection is required - e.g. DemoSpace
 - ClassClaim / Service name - e.g. postgres1
 
-##
+---
 
-###Sample Usage: view services marketplace offerings, provision postgres database, link generated secret to cf/korifi abstraction layer, deploy spring-petclinic demo app, binding it to the tanzu postgres service **
+##Sample Usage: view services marketplace offerings, provision postgres database, link generated secret to cf/korifi abstraction layer, deploy spring-petclinic demo app, binding it to the tanzu postgres service **
 
-View Claimable Services in Tanzu enabled Cluster (a korifi/tap alternative to "cf marketplace")
+1. View Claimable Services in Tanzu enabled Cluster (a korifi/tap alternative to "cf marketplace")
 ```
 tanzu services classes list
   NAME                  DESCRIPTION
@@ -36,13 +35,13 @@ tanzu services classes list
   redis-unmanaged       Redis by Bitnami
 ```
 
-Create a basic Postgres service using tanzu cli
+2. Create a basic Postgres service using tanzu cli
 ```
 tanzu services class-claim create postgres1 --class postgresql-unmanaged
 ```
 
 
-Korifi / CF environment (org and space) targetted on same k8s cluster
+3. Korifi / CF environment (org and space) targetted on same k8s cluster
 ```
 cf target
 API endpoint:   https://api.a4.fynesy.com
@@ -52,7 +51,7 @@ org:            DemoOrg
 space:          DemoSpace
 ```
 
-Create link from Default-NS ClassClaim for PostgresDB instance to CF 'space' - note this manifests in a guid-named cf-space-*** in the k8s cluster
+4. Link Tanzu native service to cf service instance representation
 ```
 ./CreateTapKorifiService.sh default DemoSpace postgres1
 Creating postgres1 Service Secret-Export from default
@@ -62,7 +61,8 @@ Creating postgres1 Service Secret-Import to DemoSpace K8s namespace: cf-space-41
 Creating postgres1 Korifi user-provided service for cf space DemoSpace
   cfserviceinstance.korifi.cloudfoundry.org/postgres1 created
 ```
-Confirm service now exists for cf apps
+
+5. Confirm service now exists for cf apps
 ```
 cf services
 Getting service instances in org DemoOrg / space DemoSpace as tas-admin...
@@ -71,14 +71,15 @@ name        offering        plan   bound apps   last operation     broker   upgr
 postgres1   user-provided                       create succeeded
 ```
 
-Validate service by deploying spring petclinic demo app and binding it to new postgres db service instance
+6. Validate service by deploying spring petclinic demo app and binding it to new postgres db service instance
 ```
 cf push cf-petclinic -p ~/Downloads/spring-petclinic/target/spring-petclinic-3.2.0-SNAPSHOT.jar --no-start
 cf restage cf-petclinic
 ```
 
 
-##
+---
+
 What's happening 'under the covers'
 
 Script creates a Carvel SecretExport from the namespace hosting the ClassClaim
