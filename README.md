@@ -2,13 +2,13 @@
 
 Intro:
 
-Using Kubernetes with Tanzu Platform via a cloud-foundry "cf" abstraction is supported via the korifi controller, but there's not native korifi cloud foundry marketplace.
+Using Kubernetes with Tanzu Platform via a cloudfoundry "cf" abstraction is supported via the korifi controller, but there's no native korifi cloudfoundry marketplace.
 
 TAP for Kubernetes ships however with a TAP (bitnami) services operator providing kubernetes hosted services provisioned on demand (postgres, mysql, rabbitmq, redis, kafka)
 
-How can these dynamically created services be easily exposed to the cloud-foundry/korifi abstraction?
+So can korifi leverage the TAP native operator as a marketplace?
 
-This script will generate a 'cf service instance' in the appropriate k8s namespace such that the cloud foundry api can see it and allow for cf pushed applications to 'bind' directly to TAP / bitnami operator provisioned services. 
+This script will link the tanzu service secret to the cf layer, generating a 'cf service instance' in the appropriate k8s namespace such that the cloud foundry api can see and bind directly to tanzu provisioned services.
 
 No need to extract and re-inject the service connection secrets!
 
