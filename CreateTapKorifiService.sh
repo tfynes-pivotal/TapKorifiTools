@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [[ $# -eq 0 ]] ; then
-    echo 'Usage: CreateBitnamiKorifiService.sh [K8S namespace claiming service] [cf space] [bitnami classclaim/service instance name]'
+    echo 'Usage: CreateTapKorifiService.sh [K8S namespace claiming service] [cf space] [bitnami classclaim/service instance name]'
     exit 0
 fi
 
