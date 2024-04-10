@@ -21,7 +21,13 @@ Script takes 3 inputs
 
 ---
 
-## Sample Usage: view services marketplace offerings, provision postgres database, link generated secret to cf/korifi abstraction layer, deploy spring-petclinic demo app, binding it to the tanzu postgres service **
+## Worked Example: 
+- View services marketplace offerings
+- Provision postgres database
+- Link generated secret to cf/korifi abstraction layer
+- Deploy spring-petclinic demo app, binding it to the tanzu postgres service **
+
+
 
 1. View Claimable Services in Tanzu enabled Cluster (a korifi/tap alternative to "cf marketplace")
 ```
