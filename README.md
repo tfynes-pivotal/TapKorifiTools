@@ -16,7 +16,7 @@ No need to extract and re-inject the service connection secrets!
 ##
 Usage:
 Script takes 3 inputs
-- K8s namespace in which a ClassClaim has been created - e.g. default
+- K8s namespace in which a Tanzu Data Service has been created - e.g. default
 - CF space name in which korifi service connection is required - e.g. DemoSpace
 - ClassClaim / Service name - e.g. postgres1
 
