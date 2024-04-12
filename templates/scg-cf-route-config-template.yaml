@@ -1,0 +1,25 @@
+#@ load("@ytt:data", "data")
+#@ load("@ytt:base64", "base64")
+#@ load("@ytt:json", "json")
+
+#@  pmap = { 
+#@    "Path":"/sm",
+#@    "filters":"foo"
+#@  }
+#@  plist = [pmap]
+---
+apiVersion: tanzu.vmware.com/v1
+kind: SpringCloudGatewayRouteConfig
+metadata:
+  name: #@ data.values.scg_route_config_name
+  namespace: #@ data.values.scg_namespace
+spec:
+  service:
+    name: #@ "s-" + data.values.cf_target_route_fqdn_guid
+    namespace: #@ data.values.cf_space_guid
+  routes:
+  - predicates:
+    - Path: #@ "/" + data.values.scg_route_predicate
+      filters:
+      - StripPrefix=1
+      - PrefixPath=/

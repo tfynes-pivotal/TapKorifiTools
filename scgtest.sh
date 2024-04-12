@@ -1,0 +1,1 @@
+./CreateSCGKorifiRouteConfig.sh scgtestrc default tdemo1.cluster.local DemoSpace "scgtest"
