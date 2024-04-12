@@ -1,0 +1,14 @@
+#@ load("@ytt:data", "data")
+#@ load("@ytt:base64", "base64")
+#@ load("@ytt:json", "json")
+---
+apiVersion: tanzu.vmware.com/v1
+kind: SpringCloudGatewayMapping
+metadata:
+  name: #@ data.values.scg_mapping_name
+  namespace: #@ data.values.scg_namespace
+spec:
+  gatewayRef:
+    name: #@ data.values.scg_instance_name
+  routeConfigRef:
+    name: #@ data.values.scg_route_config_name

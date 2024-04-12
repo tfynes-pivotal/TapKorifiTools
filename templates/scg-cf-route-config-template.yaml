@@ -2,11 +2,6 @@
 #@ load("@ytt:base64", "base64")
 #@ load("@ytt:json", "json")
 
-#@  pmap = { 
-#@    "Path":"/sm",
-#@    "filters":"foo"
-#@  }
-#@  plist = [pmap]
 ---
 apiVersion: tanzu.vmware.com/v1
 kind: SpringCloudGatewayRouteConfig

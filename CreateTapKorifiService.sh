@@ -12,6 +12,7 @@ pgsecret=$(kubectl -n $ns get classclaims.services.apps.tanzu.vmware.com $servic
 
 cfk8sns=$(cf curl /v3/spaces | jq ".resources[] | select(.name==\"$cfSpace\")" | jq -r .guid)
 
+echo
 echo "Creating $serviceName Service Secret-Export from $ns"
 cat <<EOF | kubectl apply -f -
 apiVersion: secretgen.carvel.dev/v1alpha1
@@ -24,8 +25,6 @@ spec:
   - $cfk8sns
 EOF
 echo
-echo
-
 echo "Creating $serviceName Service Secret-Import to $cfSpace K8s namespace: $cfk8sns"
 cat <<EOF | kubectl apply -f -
 apiVersion: secretgen.carvel.dev/v1alpha1
@@ -36,7 +35,6 @@ metadata:
 spec:
   fromNamespace: $ns
 EOF
-echo
 echo
 
 echo "Creating $serviceName Korifi user-provided service for cf space $cfSpace"
@@ -53,5 +51,6 @@ spec:
   secretName: $pgsecret
   type: user-provided
 EOF
+echo
 
 

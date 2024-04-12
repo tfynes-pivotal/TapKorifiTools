@@ -25,13 +25,13 @@ scg_route_predicate="$5"
 
 
 
-echo scg_route_config_name = $scg_route_config_name
-echo scg_namespace = $scg_namespace
-echo cf_target_route_fqdn  = $cf_target_route_fqdn
-echo cf_target_route_fqdn_guid  = $cf_target_route_fqdn_guid
-echo cf_space = $cf_space
-echo cf_space_guid = $cf_space_guid
-echo scg_route_predicate = $scg_route_predicate
+# echo scg_route_config_name = $scg_route_config_name
+# echo scg_namespace = $scg_namespace
+# echo cf_target_route_fqdn  = $cf_target_route_fqdn
+# echo cf_target_route_fqdn_guid  = $cf_target_route_fqdn_guid
+# echo cf_space = $cf_space
+# echo cf_space_guid = $cf_space_guid
+# echo scg_route_predicate = $scg_route_predicate
 
 ytt -f ./templates/scg-cf-route-config-template.yaml \
 --data-value scg_route_config_name=$scg_route_config_name \
