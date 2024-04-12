@@ -14,7 +14,8 @@ spec:
     namespace: #@ data.values.cf_space_guid
   routes:
   - predicates:
-    - Path: #@ "/" + data.values.scg_route_predicate
-      filters:
+    - #@ "Path=/" + data.values.scg_route_predicate
+    - Method=GET
+    filters:
       - StripPrefix=1
       - PrefixPath=/
