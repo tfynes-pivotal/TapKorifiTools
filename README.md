@@ -98,3 +98,19 @@ Script creates CF service (cfServiceInstance) allowing for cf pushed apps to bin
 Limitations:
 - Unique cf spaces names required (for now)
 - Clusters with large (20+) orgs/spaces could break the script as cf api pagination walking not implemented.
+
+---
+
+## SCG Route Creator
+
+While korifi doesn't formally support 'internal domains', 'cf-push' deployed services can be accesed at the k8s 
+layer if you're aware of the name and namespace. These can be found from the cf api by curling space and app endpoints.
+```
+CreateSCGKorifiRouteConfig.sh
+```
+generates an SCG route-config, populating the target service and namespace accordingly. Run this script, direct output to file 
+and apply to k8s cluster
+```
+CreateSCGKorifiRouteMapping.sh 
+```
+simply creates a corresponding SCG route to gateway-instance mapping CR which should also be applied to the cluster.
