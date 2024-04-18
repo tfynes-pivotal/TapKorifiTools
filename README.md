@@ -20,6 +20,9 @@ Script takes 3 inputs
 - ClassClaim / Service name - e.g. postgres1
 
 ---
+Known issue:
+TAP clusters are deleting the underlying secretExport every 10 minutes. This script thus needs to be re-run if restarting korifi pushed applications to refresh the service binding after this period of time has elapsed.
+---
 
 ## Worked Example: 
 - View services marketplace offerings
