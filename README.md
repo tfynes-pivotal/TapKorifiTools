@@ -120,3 +120,17 @@ and apply to k8s cluster
 CreateSCGKorifiRouteMapping.sh 
 ```
 simply creates a corresponding SCG route to gateway-instance mapping CR which should also be applied to the cluster.
+
+
+## Gateway Route Configuration Autogeneration from OpenAPI docs
+
+1. Deploy customer-profile java rest service with openapi docs exposed on /apidocs context
+
+2. Switch app to running locally off a cluster.local internal domain
+
+3. Port forward localhost:18080 to spring-cloud-gateway operator port 8080 to access openapi->routeConfig transformer service
+
+4. Run cf-service-2-routeconfig.sh customer-profile.cluster.local DemoSpace to generate scg route-config. save to file and apply to cluster
+
+5. Create scg mapping from this generated scg-route-config to existing SCG instance. Helper script 'cf-k8s-svc.sh' returns route-config name (same as target internal k8s service for customer-profile) - use as input
+./CreateSCGKorifiRouteMapping.sh m1 default tdemo-gateway $(./cf-k8s-svc.sh customer-profile.cluster.local) > m1.yaml
