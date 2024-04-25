@@ -142,7 +142,9 @@ cf unmap-route customer-profile a5.fynesy.com
 ```
 
 3. Port forward localhost:18080 to spring-cloud-gateway operator port 8080 to access openapi->routeConfig transformer service
-
+```
+kubectl -n spring-cloud-gateway port-forward deployment/scg-operator 18080:8080
+```
 
 4. Run cf-service-2-routeconfig.sh customer-profile.cluster.local DemoSpace to generate scg route-config. save to file and apply to cluster
 ```
