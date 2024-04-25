@@ -155,4 +155,5 @@ kubectl apply -f ./rc1.json
 5. Create scg mapping from this generated scg-route-config to existing SCG instance. Helper script 'cf-k8s-svc.sh' returns route-config name (same as target internal k8s service for customer-profile) - use as input
 ```
 ./CreateSCGKorifiRouteMapping.sh m1 default tdemo-gateway $(./cf-k8s-svc.sh customer-profile.cluster.local) > m1.yaml
+kubectl apply -f ./m1.yaml
 ```
