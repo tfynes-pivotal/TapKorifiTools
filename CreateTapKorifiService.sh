@@ -18,6 +18,8 @@ cat <<EOF | kubectl apply -f -
 apiVersion: secretgen.carvel.dev/v1alpha1
 kind: SecretExport
 metadata:
+#!  finalizers:
+#!  - fynesy.com/no-delete
   name: $pgsecret
   namespace: $ns
 spec:
