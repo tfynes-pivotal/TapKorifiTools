@@ -125,12 +125,32 @@ simply creates a corresponding SCG route to gateway-instance mapping CR which sh
 ## Gateway Route Configuration Autogeneration from OpenAPI docs
 
 1. Deploy customer-profile java rest service with openapi docs exposed on /apidocs context
+```
+tanzu services class-claim create customer-database --class postgresql-unmanaged
+./CreateTapKorifiService.sh default DemoSpace customer-database
+
+cf push customer-profile -p target/customer-profile-0.0.1-SNAPSHOT.jar --no-start
+cf bind-service customer-profile customer-database
+cf start customer-profile
+```
 
 2. Switch app to running locally off a cluster.local internal domain
+```
+cf create-shared-domain cluster.local
+cf map-route customer-profile cluster.local --hostname customer-profile
+cf unmap-route customer-profile a5.fynesy.com
+```
 
 3. Port forward localhost:18080 to spring-cloud-gateway operator port 8080 to access openapi->routeConfig transformer service
 
+
 4. Run cf-service-2-routeconfig.sh customer-profile.cluster.local DemoSpace to generate scg route-config. save to file and apply to cluster
+```
+./cf-service-2-routeconfig.sh customer-profile.cluster.local DemoSpace > rc1.json
+kubectl apply -f ./rc1.json
+```
 
 5. Create scg mapping from this generated scg-route-config to existing SCG instance. Helper script 'cf-k8s-svc.sh' returns route-config name (same as target internal k8s service for customer-profile) - use as input
+```
 ./CreateSCGKorifiRouteMapping.sh m1 default tdemo-gateway $(./cf-k8s-svc.sh customer-profile.cluster.local) > m1.yaml
+```
