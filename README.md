@@ -150,7 +150,8 @@ kubectl -n spring-cloud-gateway port-forward deployment/scg-operator 18080:8080
 ```
 cf-service-2-routeconfig.sh [internal fqdn] [cf-space-name]
 ```
-to generate scg route-config. save to file and apply to cluster
+to generate scg route-config. save to file and apply to cluster.
+E.g.
 
 ```
 ./cf-service-2-routeconfig.sh customer-profile.cluster.local DemoSpace > rc1.json
