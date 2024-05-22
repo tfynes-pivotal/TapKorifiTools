@@ -24,6 +24,7 @@ Script takes 3 inputs
 ## Known issue:
 
 TAP clusters are deleting the underlying secretExport every 10 minutes. This script thus needs to be re-run if restarting korifi pushed applications to refresh the service binding after this period of time has elapsed.
+UPDATE: Issue remediated / fixed in TAP 1.10
 
 ---
 
