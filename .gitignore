@@ -7,3 +7,5 @@ y.yaml
 x.yaml
 SCG-route-creator/m1.yaml
 SCG-route-creator/rc.json
+.DS_Store
+.gitignore
